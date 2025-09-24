@@ -1,0 +1,53 @@
+# Release {{version}}
+
+📅 **Date:** {{date}}
+
+## 📊 Summary
+
+- **Total Repositories:** {{summary.total_repos}}
+- **Updated Repositories:** {{summary.updated_repos}}
+- **Total Commits:** {{summary.total_commits}}
+- **Contributors:** {{summary.contributors}}
+
+---
+
+{{#each components}}
+## {{repository}}
+
+{{#if (eq status "Released")}}
+**Version:** `{{current_version}}`  
+**Previous:** {{#if previous_version}}`{{previous_version}}`{{else}}*Initial Release*{{/if}}  
+**Release Date:** {{release_date}}  
+**Commits:** {{stats.commit_count}}  
+
+{{#if commits}}
+### 🎯 Changes
+
+{{#each commits}}
+- {{message}} ([`{{sha}}`]) {{#if pr_number}}(#{{pr_number}}){{/if}}
+{{/each}}
+{{/if}}
+
+{{#if release_notes}}
+### 📝 Release Notes
+
+{{release_notes}}
+{{/if}}
+
+{{#if stats.contributors}}
+### 👥 Contributors
+{{#each stats.contributors}}
+- @{{this}}
+{{/each}}
+{{/if}}
+
+{{else}}
+*No changes in this release*
+
+{{#if latest_version}}
+Latest version: `{{latest_version}}` {{#if latest_date}}({{latest_date}}){{/if}}
+{{/if}}
+{{/if}}
+
+---
+{{/each}}
